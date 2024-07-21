@@ -1,5 +1,3 @@
-const DEFAULT_HEX_COLOR = '#000000';
-
 /**
  * Color represented in hex.
  *
@@ -9,6 +7,7 @@ const DEFAULT_HEX_COLOR = '#000000';
  *   * be all lowercase
  */
 export type HexColor = `#${string}`;
+export const DEFAULT_HEX_COLOR = '#000000';
 
 /**
  * Processes a value to conform to our `HexColor` type.
