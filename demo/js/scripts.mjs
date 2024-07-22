@@ -1,4 +1,8 @@
+import { Color } from './color.mjs';
+
 const baseColor = generateRandomHexColor();
+
+console.log(new Color(baseColor));
 
 document.body.append(createColorGridElement(baseColor));
 
