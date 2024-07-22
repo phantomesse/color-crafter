@@ -10,6 +10,13 @@ export type RgbColor = {
 };
 export const DEFAULT_RGB_COLOR = { r: 0, g: 0, b: 0 };
 
+export function isRgbColor(value: any): boolean {
+  if (typeof value !== 'object' || value === null) return false;
+  const rgb: Object = value as Object;
+  if (!('r' in rgb && 'g' in rgb && 'b' in rgb)) return false;
+  return !Object.values(rgb).map(isValidRgbValue).includes(false);
+}
+
 /**
  * Processes a value to conform to our `RgbColor` type.
  *
@@ -38,5 +45,5 @@ export function asRgbColor(r: number, g: number, b: number): RgbColor {
 }
 
 function isValidRgbValue(value: number) {
-  return value >= 0 && value <= 255;
+  return value >= 0 && value <= 255 && Math.round(value) === value;
 }

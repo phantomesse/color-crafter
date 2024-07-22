@@ -1,4 +1,5 @@
 const path = require('path');
+const { library } = require('webpack');
 
 module.exports = {
   mode: 'production',
@@ -8,6 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './build'),
     filename: 'color-crafter.js',
+    library: 'colorCrafter',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],

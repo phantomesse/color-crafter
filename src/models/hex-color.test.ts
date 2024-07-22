@@ -1,7 +1,22 @@
 import { describe, test, expect } from '@jest/globals';
-import { asHexColor } from './hex-color';
+import { asHexColor, isHexColor } from './hex-color';
 
 describe('hex color', () => {
+  test(`${isHexColor.name}`, () => {
+    expect(isHexColor({})).toBe(false);
+    expect(isHexColor(0)).toBe(false);
+    expect(isHexColor(null)).toBe(false);
+    expect(isHexColor('F7C')).toBe(false);
+    expect(isHexColor('#F7CA')).toBe(false);
+    expect(isHexColor('e32d8d')).toBe(false);
+    expect(isHexColor('E32D8D')).toBe(false);
+    expect(isHexColor('e32D8dcC')).toBe(false);
+    expect(isHexColor('#eg2d8d')).toBe(false);
+
+    expect(isHexColor('#e32d8d')).toBe(true);
+    expect(isHexColor('#000000')).toBe(true);
+  });
+
   test(`${asHexColor.name}`, () => {
     expect(asHexColor('F7C')).toBe('#ff77cc');
     expect(asHexColor('f7ca')).toBe('#ff77cc');

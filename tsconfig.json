@@ -2,7 +2,7 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "module": "commonjs",
-    "rootDir": "src",
+    "rootDir": "src/",
     "removeComments": true,
   },
   "exclude": [
