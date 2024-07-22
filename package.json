@@ -4,7 +4,9 @@
   "description": "JavaScript library for converting colors between HEX, RGB, and HSL with helper functions to manipulate colors.",
   "author": "Lauren Zou",
   "license": "ISC",
+  "type": "module",
   "scripts": {
+    "demo": "gulp demo",
     "build": "webpack",
     "test": "jest"
   },
@@ -14,6 +16,8 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "gulp": "^5.0.0",
+    "gulp-webserver": "^0.9.1",
     "ts-jest": "^29.2.3",
     "ts-loader": "^9.5.1",
     "typescript": "^5.5.3",
