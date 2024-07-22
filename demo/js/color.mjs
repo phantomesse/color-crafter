@@ -5,6 +5,6 @@ export class Color {
   constructor(hex) {
     this.hex = hex;
     this.rgb = colorCrafter.hexToRgb(hex);
-    this.hsl = colorCrafter.hexToHsl(hsl);
+    this.hsl = colorCrafter.hexToHsl(hex);
   }
 }
