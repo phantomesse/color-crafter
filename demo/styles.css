@@ -1,31 +1,28 @@
 html {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 body {
   margin: 0;
-  padding: 48px;
   font: 300 16px 'Poppins', sans-serif;
-}
-
-h1 {
-  font: 300 20px 'Poppins', sans-serif;
-  margin: 0 0 24px;
+  width: 100%;
+  height: 100%;
 }
 
 .color-grid {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-auto-flow: column;
-  gap: 16px;
+  width: 100%;
+  height: 100%;
 }
 
 .color-card {
   box-sizing: border-box;
-  border-radius: 16px;
   width: 100%;
-  height: 100px;
   padding: 16px;
   display: flex;
   flex-direction: column;

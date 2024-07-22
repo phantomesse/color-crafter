@@ -1,4 +1,4 @@
-import { HexColor } from './models/hex-color';
+import { BLACK_HEX_COLOR, HexColor, WHITE_HEX_COLOR } from './models/hex-color';
 import { ConformanceLevel, getContrastingColor } from './utils/contrast-utils';
 import {
   hexToHsl,
@@ -25,6 +25,14 @@ function manipulateColor(
   manipulationFn: ManipulationFn
 ): HexColor {
   return manipulationFn(getColor(input), amountOrConfig).hex;
+}
+
+function isWhite(input: any): boolean {
+  return getColor(input).hex === WHITE_HEX_COLOR;
+}
+
+function isBlack(input: any): boolean {
+  return getColor(input).hex === BLACK_HEX_COLOR;
 }
 
 function contrast(
@@ -57,5 +65,7 @@ module.exports = {
     manipulateColor(input, amount, getLessSaturatedColor),
   shift: (input: any, amount: number) => shiftHue(getColor(input), amount).hex,
 
+  isWhite,
+  isBlack,
   contrast,
 };
