@@ -1,4 +1,9 @@
+import {
+  COLOR_NAME_TO_HEX_COLOR_MAP,
+  HEX_COLOR_TO_COLOR_NAME_MAP,
+} from './color-names.mjs';
 import { Color } from './color.mjs';
+import { updateSeedColors } from './url.mjs';
 
 export class ColorCard extends HTMLElement {
   constructor() {
@@ -20,10 +25,34 @@ export class ColorCard extends HTMLElement {
       const element = document.createElement(tag);
       element.innerText = text;
       parentContainer.appendChild(element);
+      return element;
     }
 
     // Label.
     createTextElement(this.getAttribute('label'), this, 'h2');
+
+    // Color name.
+    const colorName = this.color.name;
+    const hexForColorName = COLOR_NAME_TO_HEX_COLOR_MAP[colorName];
+    if (colorName) {
+      if (hexForColorName === this.color.hex) {
+        // Exact match.
+        createTextElement(colorName, this, 'h3');
+      } else {
+        // Similar color.
+        const similarColorElement = document.createElement('a');
+        similarColorElement.className = 'similar-color';
+        similarColorElement.style.setProperty('--color', hexForColorName);
+        similarColorElement.innerText = colorName;
+        similarColorElement.addEventListener('click', () => {
+          updateSeedColors(hexForColorName);
+        });
+
+        createTextElement('Similar to ', this, 'h3').appendChild(
+          similarColorElement
+        );
+      }
+    }
 
     // Add theme selector if necessisary
     if (this.isEditable) {
@@ -31,6 +60,11 @@ export class ColorCard extends HTMLElement {
       themeSelector.setAttribute('theme-name', this.themeName);
       this.appendChild(themeSelector);
     }
+
+    // Footer.
+    const footerContainer = document.createElement('div');
+    footerContainer.className = 'footer';
+    this.appendChild(footerContainer);
 
     // Metadata.
     const metadataContainer = document.createElement('div');
@@ -44,7 +78,7 @@ export class ColorCard extends HTMLElement {
       'hsl(' + Object.values(this.color.hsl).join(', ') + ')',
       metadataContainer
     );
-    this.appendChild(metadataContainer);
+    footerContainer.appendChild(metadataContainer);
 
     // Text colors.
     const conformanceLevelToTextColorMap = Object.fromEntries(
@@ -81,7 +115,7 @@ export class ColorCard extends HTMLElement {
 
       conformanceLevelContainer.appendChild(conformanceLevelElement);
     }
-    this.appendChild(conformanceLevelContainer);
+    footerContainer.appendChild(conformanceLevelContainer);
   }
 }
 

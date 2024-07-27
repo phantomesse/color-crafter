@@ -46,7 +46,12 @@ function _randomTheme(colorCount) {
 }
 
 /** @type {Theme[]} */
-export const THEMES = [_randomTheme(3), _randomTheme(9), _randomTheme(16)];
+export const THEMES = [
+  _randomTheme(3),
+  _randomTheme(5),
+  _randomTheme(9),
+  _randomTheme(16),
+];
 
 /**
  * @param {string} themeName
