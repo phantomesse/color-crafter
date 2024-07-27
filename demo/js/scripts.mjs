@@ -1,15 +1,40 @@
-import { ColorCard, createColorCard } from './color-card.mjs';
+import { ColorCard } from './color-card.mjs';
 import { generateRandomColor } from './color.mjs';
+import { ThemeSelector } from './theme-selector.mjs';
+import { getTheme, Theme } from './theme.mjs';
+import { getSeedColors, getThemeName, updateSeedColors } from './url.mjs';
 
 customElements.define('color-card', ColorCard);
+customElements.define('theme-selector', ThemeSelector);
 
-const baseColor = generateRandomColor();
-document.body.append(createColorCard(baseColor.hex, 'Base Color'));
+const seedColors = getSeedColors();
+if (seedColors.length === 0) {
+  const randomColor = generateRandomColor();
+  seedColors.push(randomColor);
+  updateSeedColors(randomColor.hex);
+}
 
-for (let i = 0; i < 8; i++) {
-  document.body.append(
-    createColorCard(generateRandomColor().hex, 'Random Color')
-  );
+updateTheme();
+
+function updateTheme() {
+  // Get theme from url params.
+  const theme = getTheme(getThemeName()) ?? getRandomTheme();
+
+  // Remove any existing color cards.
+  document
+    .querySelectorAll('color-card')
+    .forEach(colorCard => colorCard.remove());
+
+  // Add new color cards.
+  const colorCards = theme.generateColorCards(...seedColors);
+  for (const colorCard of colorCards) document.body.append(colorCard);
+  document.body.className = `colors-${colorCards.length}`;
+}
+
+function getRandomTheme() {
+  return Object.values(Theme)[
+    Math.floor(Math.random() * Object.keys(Theme).length)
+  ];
 }
 
 // document.body.append(createColorGridElement(baseColor));

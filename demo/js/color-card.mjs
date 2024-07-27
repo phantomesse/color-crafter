@@ -3,6 +3,13 @@ import { Color } from './color.mjs';
 export class ColorCard extends HTMLElement {
   constructor() {
     super();
+    this.isEditable = false;
+    this.themeName;
+  }
+
+  setEditable(themeName) {
+    this.isEditable = true;
+    this.themeName = themeName;
   }
 
   connectedCallback() {
@@ -17,6 +24,13 @@ export class ColorCard extends HTMLElement {
 
     // Label.
     createTextElement(this.getAttribute('label'), this, 'h2');
+
+    // Add theme selector if necessisary
+    if (this.isEditable) {
+      const themeSelector = document.createElement('theme-selector');
+      themeSelector.setAttribute('theme-name', this.themeName);
+      this.appendChild(themeSelector);
+    }
 
     // Metadata.
     const metadataContainer = document.createElement('div');
