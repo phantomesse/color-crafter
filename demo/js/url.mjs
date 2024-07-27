@@ -36,6 +36,7 @@ function _getUrlParams() {
       .substring(1)
       .split('&')
       .map(pair => pair.split('='))
+      .filter(([key, _]) => [_THEME_KEY, _SEED_COLORS_KEY].includes(key))
   );
 }
 

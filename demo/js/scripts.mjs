@@ -1,7 +1,7 @@
 import { ColorCard } from './color-card.mjs';
 import { generateRandomColor } from './color.mjs';
 import { ThemeSelector } from './theme-selector.mjs';
-import { getTheme, Theme } from './theme.mjs';
+import { getTheme, THEMES } from './theme.mjs';
 import { getSeedColors, getThemeName, updateSeedColors } from './url.mjs';
 
 customElements.define('color-card', ColorCard);

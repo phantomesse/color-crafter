@@ -1,4 +1,4 @@
-import { getTheme, Theme } from './theme.mjs';
+import { THEMES } from './theme.mjs';
 import { updateTheme } from './url.mjs';
 
 export class ThemeSelector extends HTMLElement {
@@ -13,9 +13,8 @@ export class ThemeSelector extends HTMLElement {
 
     const selectElement = document.createElement('select');
 
-    const allThemes = Object.values(Theme);
     const optionElements = [];
-    for (const theme of allThemes) {
+    for (const theme of THEMES) {
       const optionElement = document.createElement('option');
       optionElement.innerText = theme.name;
       optionElement.value = theme.name;
@@ -27,13 +26,6 @@ export class ThemeSelector extends HTMLElement {
 
     selectElement.addEventListener('change', () => {
       updateTheme(optionElements[selectElement.selectedIndex].value);
-      document.body.dispatchEvent(
-        new CustomEvent('changeTheme', {
-          detail: {
-            themeName: optionElements[selectElement.selectedIndex].value,
-          },
-        })
-      );
     });
   }
 }

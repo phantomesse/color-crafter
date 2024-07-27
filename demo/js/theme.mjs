@@ -32,21 +32,12 @@ function _randomTheme(colorCount) {
         colorCards[0].setEditable(`random-${colorCount}`);
       }
 
-      let addedToBack = false;
       while (colorCards.length < colorCount) {
         const colorCard = createColorCard(
           generateRandomColor().hex,
           'Random Color'
         );
-
-        // Alternately insert color cards into the front and back of the array
-        // so that the seed colors would show up in the middle.
-        if (addedToBack) {
-          colorCards.splice(0, 0, colorCard);
-        } else {
-          colorCards.push(colorCard);
-        }
-        addedToBack = !addedToBack;
+        colorCards.push(colorCard);
       }
 
       return colorCards;
@@ -54,16 +45,13 @@ function _randomTheme(colorCount) {
   };
 }
 
-/** @type {Object.<string, Theme>} */
-export const Theme = {
-  randomThreeTheme: _randomTheme(3),
-  randomNineTheme: _randomTheme(9),
-};
+/** @type {Theme[]} */
+export const THEMES = [_randomTheme(3), _randomTheme(9), _randomTheme(16)];
 
 /**
  * @param {string} themeName
  * @returns {Theme}
  */
 export function getTheme(themeName) {
-  return Object.values(Theme).find(theme => theme.name === themeName);
+  return THEMES.find(theme => theme.name === themeName);
 }

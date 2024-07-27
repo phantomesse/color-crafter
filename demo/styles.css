@@ -22,6 +22,10 @@ body.colors-9 {
   grid-auto-flow: column;
 }
 
+body.colors-16 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 color-card {
   background: var(--bg-color);
   box-sizing: border-box;
