@@ -4,6 +4,8 @@ import { ThemeSelector } from './theme-selector.mjs';
 import { getTheme, THEMES } from './theme.mjs';
 import { getSeedColors, getThemeName, updateSeedColors } from './url.mjs';
 
+const MAIN_ELEMENT = document.getElementsByTagName('main')[0];
+
 customElements.define('color-card', ColorCard);
 customElements.define('theme-selector', ThemeSelector);
 
@@ -25,9 +27,10 @@ function updateTheme() {
     .forEach(colorCard => colorCard.remove());
 
   // Add new color cards.
+
   const colorCards = theme.generateColorCards(...seedColors);
-  for (const colorCard of colorCards) document.body.append(colorCard);
-  document.body.className = `colors-${colorCards.length}`;
+  for (const colorCard of colorCards) MAIN_ELEMENT.append(colorCard);
+  MAIN_ELEMENT.className = `colors-${colorCards.length}`;
 }
 
 function getRandomTheme() {

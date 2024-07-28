@@ -28,7 +28,7 @@ function _generateColorCards(colorCount, seedColor) {
     20,
     Math.floor(
       Math.random() * Math.min(seedColor.hsl.l, 100 - seedColor.hsl.l)
-    ) / (colorCount === 3 ? 1 : 2)
+    ) / (colorCount === 9 ? 2 : 1)
   );
 
   const lighterHexColor = colorCrafter.lighten(seedColor.hex, lightnessDiff);
@@ -39,6 +39,22 @@ function _generateColorCards(colorCount, seedColor) {
 
   if (colorCount === 3) {
     return [lighterColorCard, seedColorCard, darkerColorCard];
+  }
+
+  if (colorCount === 5) {
+    return [
+      lighterColorCard,
+      createColorCard(
+        colorCrafter.lighten(seedColor.hex, lightnessDiff / 2),
+        'Medium Light'
+      ),
+      seedColorCard,
+      createColorCard(
+        colorCrafter.darken(seedColor.hex, lightnessDiff / 2),
+        'Medium Dark'
+      ),
+      darkerColorCard,
+    ];
   }
 
   const saturationDiff = Math.max(

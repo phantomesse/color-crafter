@@ -1,35 +1,9 @@
-html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font: 400 18px "Roboto Mono", monospace;
-  width: 100%;
-  height: 100%;
-  display: grid;
-}
-
-body.colors-3 {
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-body.colors-9 {
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-auto-flow: column;
-}
-
-body.colors-16 {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
 color-card {
   background: var(--bg-color);
   box-sizing: border-box;
   color: var(--aaa-small-text);
+  container-name: color-card;
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -72,6 +46,7 @@ color-card .footer {
   width: 100%;
 }
 
+
 color-card .metadata {
   display: flex;
   flex-direction: column;
@@ -95,35 +70,29 @@ color-card .conformance-levels {
 
 color-card .conformance-level {
   color: var(--color);
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 color-card .conformance-level span {
   background: var(--color);
   border-radius: 8px;
   color: var(--bg-color);
-  margin-left: 8px;
   padding: 2px 4px;
 }
 
-theme-selector {
-  font-size: 14px;
-  font-weight: 600;
-  font-family: inherit;
-  display: flex;
-  grid-column: 1 / -1;
-  align-items: center;
-  color: var(--aa-small-text);
-  margin-bottom: auto;
-}
+@container color-card (max-width: 400px) {
+  color-card .footer {
+    flex-direction: column;
+    gap: 24px;
+  }
 
-theme-selector select {
-  border-radius: 8px;
-  background: var(--aa-large-text);
-  color: var(--bg-color);
-  border: 0;
-  font: inherit;
-  cursor: pointer;
-  margin-left: 8px;
-  outline: none;
-  padding: 2px 4px;
+  color-card .conformance-levels {
+    align-items: flex-start;
+  }
+
+  color-card .conformance-level {
+    flex-direction: row-reverse;
+  }
 }

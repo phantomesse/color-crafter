@@ -17,9 +17,11 @@ import { randomTheme } from './themes/random-theme.mjs';
 /** @type {Theme[]} */
 export const THEMES = [
   randomTheme(3),
+  randomTheme(5),
   randomTheme(9),
   randomTheme(16),
   monochromaticTheme(3),
+  monochromaticTheme(5),
   monochromaticTheme(9),
 ];
 

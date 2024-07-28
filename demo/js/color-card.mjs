@@ -1,8 +1,4 @@
-import {
-  COLOR_NAME_TO_HEX_COLOR_MAP,
-  getColorNameSource,
-  HEX_COLOR_TO_COLOR_NAME_MAP,
-} from './color-names.mjs';
+import { COLOR_NAME_TO_HEX_COLOR_MAP } from './color-names.mjs';
 import { Color } from './color.mjs';
 import { updateSeedColors } from './url.mjs';
 
