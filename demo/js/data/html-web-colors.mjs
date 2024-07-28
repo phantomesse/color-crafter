@@ -115,7 +115,7 @@ export const HTML_WEB_COLORS = {
   '#FF1493': 'Deep Pink',
   '#FF4500': 'Orange Red',
   '#FF6347': 'Tomato',
-  '#FF69B4': 'HotPink',
+  '#FF69B4': 'Hot Pink',
   '#FF7F50': 'Coral',
   '#FF8C00': 'Dark Orange',
   '#FFA07A': 'Light Salmon',

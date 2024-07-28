@@ -57,9 +57,10 @@ color-card h3 {
 
 color-card .similar-color {
   background: var(--color);
-  padding: 3px 4px;
-  display: inline-block;
+  border-radius: 8px;
   cursor: pointer;
+  display: inline-block;
+  padding: 0 4px;
 }
 
 color-card .similar-color:hover,

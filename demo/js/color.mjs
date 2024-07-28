@@ -1,4 +1,7 @@
-import { HEX_COLOR_TO_COLOR_NAME_MAP } from './color-names.mjs';
+import {
+  COLOR_NAME_TO_HEX_COLOR_MAP,
+  HEX_COLOR_TO_COLOR_NAME_MAP,
+} from './color-names.mjs';
 
 export class Color {
   /**
@@ -14,12 +17,20 @@ export class Color {
   }
 }
 
-/** @returns {Color} */
+/**
+ * Generates a random color and picks the similar named color if that exists.
+ *
+ * @returns {Color}
+ */
 export function generateRandomColor() {
   const rgbColor = Array(3)
     .fill(0)
     .map(() => Math.floor(Math.random() * 255));
-  return new Color(colorCrafter.rgbToHex(...rgbColor));
+  const color = new Color(colorCrafter.rgbToHex(...rgbColor));
+  if (color.name && COLOR_NAME_TO_HEX_COLOR_MAP[color.name] !== color.hex) {
+    return new Color(COLOR_NAME_TO_HEX_COLOR_MAP[color.name]);
+  }
+  return color;
 }
 
 /**
