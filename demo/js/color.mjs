@@ -48,11 +48,24 @@ function _getColorName(color) {
     .slice(startIndex, endIndex)
     .sort(
       (namedColor1, namedColor2) =>
-        _getRgbDistance(namedColor1, color) -
-        _getRgbDistance(namedColor2, color)
+        _getColorDistance(namedColor1, color) -
+        _getColorDistance(namedColor2, color)
     )[0];
   if (!similarColor) return null;
-  return _getRgbDistance(similarColor, color) < 40 ? similarColor.name : null;
+
+  return _getColorDistance(similarColor, color) < 15 ? similarColor.name : null;
+}
+
+/**
+ * @param {Color} color1
+ * @param {Color} color2
+ * @returns {number} distance between the two colors
+ */
+function _getColorDistance(color1, color2) {
+  return Math.max(
+    _getRgbDistance(color1, color2),
+    _getHslDistance(color1, color2)
+  );
 }
 
 /**
@@ -65,6 +78,19 @@ function _getRgbDistance(color1, color2) {
     Math.pow(Math.abs(color1.rgb.r - color2.rgb.r), 2) +
       Math.pow(Math.abs(color1.rgb.g - color2.rgb.g), 2) +
       Math.pow(Math.abs(color1.rgb.b - color2.rgb.b), 2)
+  );
+}
+
+/**
+ * @param {Color} color1
+ * @param {Color} color2
+ * @returns {number} distance between the two colors
+ */
+function _getHslDistance(color1, color2) {
+  return Math.sqrt(
+    Math.pow(Math.abs(color1.hsl.h - color2.hsl.h), 2) +
+      Math.pow(Math.abs(color1.hsl.s - color2.hsl.s), 2) +
+      Math.pow(Math.abs(color1.hsl.l - color2.hsl.l), 2)
   );
 }
 

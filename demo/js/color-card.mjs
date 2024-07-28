@@ -1,5 +1,6 @@
 import {
   COLOR_NAME_TO_HEX_COLOR_MAP,
+  getColorNameSource,
   HEX_COLOR_TO_COLOR_NAME_MAP,
 } from './color-names.mjs';
 import { Color } from './color.mjs';
@@ -37,7 +38,9 @@ export class ColorCard extends HTMLElement {
     if (colorName) {
       if (hexForColorName === this.color.hex) {
         // Exact match.
-        createTextElement(colorName, this, 'h3');
+        const icon = document.createElement('i');
+        icon.className = 'fa-solid fa-pencil';
+        createTextElement(colorName, this, 'h3').prepend(icon);
       } else {
         // Similar color.
         const similarColorElement = document.createElement('a');
@@ -54,7 +57,7 @@ export class ColorCard extends HTMLElement {
       }
     }
 
-    // Add theme selector if necessisary
+    // Add theme selector if neccessary.
     if (this.isEditable) {
       const themeSelector = document.createElement('theme-selector');
       themeSelector.setAttribute('theme-name', this.themeName);

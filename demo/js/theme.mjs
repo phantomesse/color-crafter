@@ -1,5 +1,5 @@
-import { ColorCard, createColorCard } from './color-card.mjs';
-import { Color, generateRandomColor } from './color.mjs';
+import { monochromaticTheme } from './themes/monochromatic-theme.mjs';
+import { randomTheme } from './themes/random-theme.mjs';
 
 /**
  * @callback GenerateColorCardsFn
@@ -14,43 +14,13 @@ import { Color, generateRandomColor } from './color.mjs';
  *           function for generating color cards for the theme
  */
 
-/**
- * Generates a theme with random colors.
- *
- * @param {Color[]} seedColors
- * @param {number} colorCount number of colors to return
- * @returns {Theme}
- */
-function _randomTheme(colorCount) {
-  return {
-    name: `random-${colorCount}`,
-    generateColorCards: (...seedColors) => {
-      const colorCards = seedColors
-        .slice(0, colorCount)
-        .map(color => createColorCard(color.hex, 'Seed Color'));
-      if (colorCards.length > 0) {
-        colorCards[0].setEditable(`random-${colorCount}`);
-      }
-
-      while (colorCards.length < colorCount) {
-        const colorCard = createColorCard(
-          generateRandomColor().hex,
-          'Random Color'
-        );
-        colorCards.push(colorCard);
-      }
-
-      return colorCards;
-    },
-  };
-}
-
 /** @type {Theme[]} */
 export const THEMES = [
-  _randomTheme(3),
-  _randomTheme(5),
-  _randomTheme(9),
-  _randomTheme(16),
+  randomTheme(3),
+  randomTheme(9),
+  randomTheme(16),
+  monochromaticTheme(3),
+  monochromaticTheme(9),
 ];
 
 /**

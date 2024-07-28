@@ -1,7 +1,7 @@
 import { ColorCard } from './color-card.mjs';
 import { generateRandomColor } from './color.mjs';
 import { ThemeSelector } from './theme-selector.mjs';
-import { getTheme } from './theme.mjs';
+import { getTheme, THEMES } from './theme.mjs';
 import { getSeedColors, getThemeName, updateSeedColors } from './url.mjs';
 
 customElements.define('color-card', ColorCard);
@@ -11,7 +11,6 @@ const seedColors = getSeedColors();
 if (seedColors.length === 0) {
   const randomColor = generateRandomColor();
   seedColors.push(randomColor);
-  updateSeedColors(randomColor.hex);
 }
 
 updateTheme();
@@ -32,9 +31,7 @@ function updateTheme() {
 }
 
 function getRandomTheme() {
-  return Object.values(Theme)[
-    Math.floor(Math.random() * Object.keys(Theme).length)
-  ];
+  return THEMES[Math.floor(Math.random() * THEMES.length)];
 }
 
 // document.body.append(createColorGridElement(baseColor));
