@@ -1,21 +1,10 @@
-/**
- * Color represented in RGB.
- *
- * Each value must be an integer between [0, 255].
- */
 export type RgbColor = {
-  r: number;
-  g: number;
-  b: number;
+  r: number; // Red between [0, 255]
+  g: number; // Green between [0, 255]
+  b: number; // Blue between [0, 255]
 };
-export const DEFAULT_RGB_COLOR = { r: 0, g: 0, b: 0 };
 
-export function isRgbColor(value: any): boolean {
-  if (typeof value !== 'object' || value === null) return false;
-  const rgb: Object = value as Object;
-  if (!('r' in rgb && 'g' in rgb && 'b' in rgb)) return false;
-  return !Object.values(rgb).map(isValidRgbValue).includes(false);
-}
+export const DEFAULT_RGB_COLOR = { r: 0, g: 0, b: 0 };
 
 /**
  * Processes a value to conform to our `RgbColor` type.

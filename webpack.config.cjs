@@ -1,5 +1,5 @@
 const path = require('path');
-const { library } = require('webpack');
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'production',
@@ -13,6 +13,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
+  },
+  optimization: {
+    moduleIds: 'named',
   },
   module: {
     rules: [

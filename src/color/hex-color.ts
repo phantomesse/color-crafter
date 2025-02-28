@@ -1,20 +1,6 @@
-/**
- * Color represented in hex.
- *
- * Formatting must:
- *   * start with '#'
- *   * have exactly 6 characters (no short-hand of 3 characters)
- *   * be all lowercase
- */
 export type HexColor = `#${string}`;
 
-export const WHITE_HEX_COLOR = '#FFFFFF' as HexColor;
-export const BLACK_HEX_COLOR = '#000000' as HexColor;
 export const DEFAULT_HEX_COLOR = '#000000' as HexColor;
-
-export function isHexColor(value: any): boolean {
-  return new RegExp(/#[a-f0-9]{6}/).test(value);
-}
 
 /**
  * Processes a value to conform to our `HexColor` type.

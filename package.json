@@ -1,26 +1,17 @@
 {
   "name": "color-crafter",
   "version": "1.0.0",
-  "description": "JavaScript library for converting colors between HEX, RGB, and HSL with helper functions to manipulate colors.",
   "author": "Lauren Zou",
   "license": "ISC",
   "type": "module",
   "scripts": {
     "demo": "gulp demo",
-    "build": "webpack",
-    "test": "jest"
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node"
+    "build": "webpack"
   },
   "devDependencies": {
-    "@jest/globals": "^29.7.0",
     "gulp": "^5.0.0",
     "gulp-webserver": "^0.9.1",
-    "ts-jest": "^29.2.3",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.5.3",
+    "ts-loader": "^9.5.2",
     "webpack": "^5.93.0",
     "webpack-cli": "^5.1.4"
   }

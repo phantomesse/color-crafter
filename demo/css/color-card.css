@@ -1,98 +1,28 @@
 color-card {
   background: var(--bg-color);
-  box-sizing: border-box;
-  color: var(--aaa-small-text);
-  container-name: color-card;
-  container-type: inline-size;
+  color: var(--fg-color);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  height: 100%;
   padding: 16px;
-  width: 100%;
-}
+  box-sizing: border-box;
 
-color-card h2 {
-  color: var(--aa-large-text);
-  font: 500 24px 'Poppins', sans-serif;
-  grid-column: 1 / -1;
-  margin: 0 0 -12px;
-}
-
-color-card h3 {
-  color: var(--aa-large-text);
-  font: 500 16px 'Poppins', sans-serif;
-  grid-column: 1 / -1;
-  margin: 0;
-}
-
-color-card .similar-color {
-  background: var(--color);
-  border-radius: 8px;
-  cursor: pointer;
-  display: inline-block;
-  padding: 0 4px;
-}
-
-color-card .similar-color:hover,
-color-card .similar-color:active {
-  color: var(--color);
-  background: var(--aa-large-text);
-}
-
-color-card .footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: auto;
-  width: 100%;
-}
-
-
-color-card .metadata {
-  display: flex;
-  flex-direction: column;
-  font: 500 16px 'Poppins', sans-serif;
-  white-space: nowrap;
-}
-
-color-card .metadata span:first-child {
-  font-size: 18px;
-}
-
-color-card .conformance-levels {
-  align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-  font: 400 14px "Roboto Mono", monospace;
-  gap: 8px;
-  justify-self: flex-end;
-  white-space: nowrap;
-}
-
-color-card .conformance-level {
-  color: var(--color);
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-color-card .conformance-level span {
-  background: var(--color);
-  border-radius: 8px;
-  color: var(--bg-color);
-  padding: 2px 4px;
-}
-
-@container color-card (max-width: 400px) {
-  color-card .footer {
-    flex-direction: column;
-    gap: 24px;
+  .color-name {
+    font: 400 24px 'Poppins', sans-serif;
+    flex-grow: 1;
+    margin-bottom: 16px;
   }
 
-  color-card .conformance-levels {
-    align-items: flex-start;
+  .conformance-level {
+    align-items: center;
+    display: flex;
+    font-size: 14px;
+    gap: 8px;
+    margin-top: 4px;
   }
 
-  color-card .conformance-level {
-    flex-direction: row-reverse;
+  .conformance-level span:first-child {
+    border-radius: 4px;
+    padding: 2px 4px;
   }
 }

@@ -4,6 +4,7 @@
     "module": "commonjs",
     "rootDir": "src/",
     "removeComments": true,
+    "target": "ES2024",
   },
   "exclude": [
     "src/**/*.test.ts"

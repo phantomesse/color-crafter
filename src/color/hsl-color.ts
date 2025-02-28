@@ -1,28 +1,12 @@
 export type HslSpace = 'h' | 's' | 'l';
 
-/** Color represented in HSL. */
 export type HslColor = {
   h: number; // Hue between [0, 360]
   s: number; // Saturation between [0, 100]
   l: number; // Lightness between [0, 100]
 };
+
 export const DEFAULT_HSL_COLOR = { h: 0, s: 0, l: 0 };
-
-export function isHslColor(value: any): boolean {
-  if (typeof value !== 'object' || value === null) return false;
-
-  const obj: Object = value as Object;
-  if (!('h' in obj && 's' in obj && 'l' in obj)) return false;
-
-  const hsl: HslColor = obj as HslColor;
-  if (hsl.h < 0 || hsl.h > 360) return false;
-  if (hsl.s < 0 || hsl.s > 100) return false;
-  if (hsl.l < 0 || hsl.l > 100) return false;
-
-  return !Object.values(hsl)
-    .map(value => Math.round(value) === value)
-    .includes(false);
-}
 
 /**
  * Processes a value to conform to our `HslColor` type.

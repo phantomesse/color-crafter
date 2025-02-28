@@ -1,34 +1,27 @@
-import { Color } from '../models/color';
-import { asHexColor, HexColor } from '../models/hex-color';
-import { asHslColor, HslColor } from '../models/hsl-color';
-import { asRgbColor, DEFAULT_RGB_COLOR, RgbColor } from '../models/rgb-color';
+import { HexColor } from './hex-color';
+import { HslColor } from './hsl-color';
+import { DEFAULT_RGB_COLOR, RgbColor } from './rgb-color';
 
-export function hexToHsl(inputHex: string): HslColor {
-  const rgb = hexToRgb(inputHex);
-  return rgbToHsl(rgb.r, rgb.g, rgb.b);
+export function hexToHsl(hex: HexColor): HslColor {
+  return rgbToHsl(hexToRgb(hex));
 }
 
-export function hexToRgb(inputHex: string): RgbColor {
-  const parts = asHexColor(inputHex).substring(1).match(/.{2}/g);
+export function hexToRgb(hex: HexColor): RgbColor {
+  const parts = hex.substring(1).match(/.{2}/g);
   if (parts?.length !== 3) return DEFAULT_RGB_COLOR;
 
-  const rgb = parts.map(hex => parseInt(`0x${hex}`, 16));
+  const rgb = parts.map((part) => parseInt(`0x${part}`, 16));
   return { r: rgb[0], g: rgb[1], b: rgb[2] };
 }
 
-export function hslToHex(
-  inputH: number,
-  inputS: number,
-  inputL: number
-): HexColor {
-  const rgb = hslToRgb(inputH, inputS, inputL);
-  return rgbToHex(rgb.r, rgb.g, rgb.b);
+export function hslToHex(hsl: HslColor): HexColor {
+  return rgbToHex(hslToRgb(hsl));
 }
 
-export function hslToRgb(inputH: number, inputS: number, inputL: number) {
-  let { h, s, l } = asHslColor(inputH, inputS, inputL);
+export function hslToRgb(hsl: HslColor) {
+  let { h, s, l } = hsl;
 
-  // Convert saturation and luminosity.
+  // Convert saturation and lightness.
   s /= 100;
   l /= 100;
 
@@ -60,25 +53,17 @@ export function hslToRgb(inputH: number, inputS: number, inputL: number) {
   return { r, g, b };
 }
 
-export function rgbToHex(
-  inputR: number,
-  inputG: number,
-  inputB: number
-): HexColor {
-  const { r, g, b } = asRgbColor(inputR, inputG, inputB);
+export function rgbToHex(rgb: RgbColor): HexColor {
+  const { r, g, b } = rgb;
   return ('#' +
     [r, g, b]
-      .map(value => value.toString(16))
-      .map(hex => (hex.length === 1 ? '0' : '') + hex)
+      .map((value) => value.toString(16))
+      .map((hex) => (hex.length === 1 ? '0' : '') + hex)
       .join('')) as HexColor;
 }
 
-export function rgbToHsl(
-  inputR: number,
-  inputG: number,
-  inputB: number
-): HslColor {
-  let { r, g, b } = asRgbColor(inputR, inputG, inputB);
+export function rgbToHsl(rgb: RgbColor): HslColor {
+  let { r, g, b } = rgb;
 
   // Convert rgb to [0, 1].
   r /= 255;
@@ -99,7 +84,7 @@ export function rgbToHsl(
   h = Math.round(h * 60);
   if (h < 0) h += 360;
 
-  // Calculate luminosity and saturation.
+  // Calculate lightness and saturation.
   let l = (cmax + cmin) / 2;
   let s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
   s = Math.round(+(s * 100));
